@@ -1,39 +1,32 @@
-﻿
-namespace Compiler
+﻿struct Err
 {
-    public struct Err
+    private TextPosition _errorPosition;
+    private byte _errorCode;
+    public Err(TextPosition errorPosition, byte errorCode)
     {
-        private TextPosition _errorPosition;
-        private byte _errorCode;
-
-        public Err(TextPosition errorPosition, byte errorCode)
+        ErrorPosition = errorPosition;
+        ErrorCode = errorCode;
+    }
+    public TextPosition ErrorPosition
+    {
+        get
         {
-            _errorPosition = errorPosition;
-            _errorCode = errorCode;
+            return _errorPosition;
         }
-
-        public TextPosition ErrorPosition
+        set
         {
-            get
-            {
-                return _errorPosition;
-            }
-            set
-            {
-                _errorPosition = value;
-            }
+            _errorPosition = value;
         }
-
-        public byte ErrorCode
+    }
+    public byte ErrorCode
+    {
+        get
         {
-            get
-            {
-                return _errorCode;
-            }
-            set
-            {
-                _errorCode = value;
-            }
+            return _errorCode;
+        }
+        set
+        {
+            _errorCode = value;
         }
     }
 }

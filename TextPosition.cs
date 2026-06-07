@@ -1,37 +1,34 @@
-﻿namespace Compiler
+﻿struct TextPosition
 {
-    public struct TextPosition
+    private uint _lineNumber;
+    private byte _charNumber;
+
+    public TextPosition()
     {
+        LineNumber = 0;
+        CharNumber = 0;
+    }
 
-        private uint _lineNumber;
-        private byte _charNumber;
-
-        public TextPosition(uint lineNumber = 0, byte charNumber = 0)
+    public uint LineNumber
+    {
+        get
         {
-            _lineNumber = lineNumber;
-            _charNumber = charNumber;
+            return _lineNumber;
         }
-        public uint LineNumber
+        set
         {
-            get
-            {
-                return _lineNumber;
-            }
-            set
-            {
-                _lineNumber = value;
-            }
+            _lineNumber = value;
         }
-        public byte CharNumber
+    }
+    public byte CharNumber
+    {
+        get
         {
-            get
-            {
-                return _charNumber;
-            }
-            set
-            {
-                _charNumber = value;
-            }
+            return _charNumber;
+        }
+        set
+        {
+            _charNumber = value;
         }
     }
 }

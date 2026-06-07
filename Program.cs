@@ -1,34 +1,21 @@
 ﻿using System;
-using Compiler;
-
 internal class Program
 {
     private static void Main(string[] args)
     {
-        string testFilePath = "source.txt";
+        const string inputPath = "source.txt";
 
-        
-        InputOutput.Init(testFilePath);
+        // Инициализируем файловый менеджер ввода-вывода
+        InputOutput.Init(inputPath);
 
-        char currentCh = ' ';
-        TextPosition currentPos = new TextPosition();
-        while (InputOutput.Ch != '\0')
+        // Запускаем синтаксический разбор
+        SyntaxAnalyzer.Parse();
+
+        // Вычитываем оставшиеся до конца файлы (если парсер завершил работу раньше)
+        while (!InputOutput.IsEof)
         {
-            currentCh = InputOutput.Ch;
-            currentPos = InputOutput.PositionNow;
-            if (currentCh == '@')
-            {
-                InputOutput.Error(1, currentPos);
-            }
-            if (currentCh == '\'' && currentPos.LineNumber == 2)
-            {
-                InputOutput.Error(2, currentPos);
-            }
-            if (currentCh == 'd' && currentPos.LineNumber == 3 && currentPos.CharNumber == 2)
-            {
-                InputOutput.Error(6, currentPos);
-            }
-            InputOutput.NextCh();
+            LexicalAnalyzer.NextSym();
         }
+
     }
 }
